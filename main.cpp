@@ -7,6 +7,8 @@ int main()
 {
     FieldProcessor fp;
 
+    // TODO: By the Linux system it's necessary to put Enter after Space, because of it
+    // new generation not processing after pushing Space
     short key = getchar();
     while (key != ESCAPE_KEY)
     {
