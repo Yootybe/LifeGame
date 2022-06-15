@@ -1,6 +1,7 @@
 #include <vector>
 #include <iostream>
 #include <array>
+#include <bitset>
 
 static const unsigned short rowsNum = 6;
 static const unsigned short colsNum = 10;
@@ -11,11 +12,11 @@ enum nearLiveCells : unsigned short
     threeLiveCells = 3
 };
 
-std::vector<std::array<std::array<bool, colsNum>, rowsNum>> generations;
+std::vector<std::array<std::bitset<colsNum>, rowsNum>> generations;
 
 void makeFirstGeneration()
 {
-    std::array<std::array<bool, colsNum>, rowsNum> cellsStatuses;
+    std::array<std::bitset<colsNum>, rowsNum> cellsStatuses;
 
     for(unsigned short i = 0; i < rowsNum; i++)
     {
@@ -34,18 +35,18 @@ void printField()
 {
     for (auto const& rowElem : generations.back())
     {
-        for (auto const colElem : rowElem)
+        for (unsigned short j = 0; j < colsNum; j++)
         {
-            std::cout << colElem;
+            std::cout << rowElem[j];
         }
         std::cout << std::endl;
     }
     std::cout << std::endl;
 }
 
-void newGenerationProcessing(std::array<std::array<bool, colsNum>, rowsNum>& prevGen)
+void newGenerationProcessing(std::array<std::bitset<colsNum>, rowsNum>& prevGen)
 {
-    std::array<std::array<bool, colsNum>, rowsNum> currentCellsStatuses;
+    std::array<std::bitset<colsNum>, rowsNum> currentCellsStatuses;
 
     unsigned short numOfLiveCellsAround = 0;
     bool isNumOfLiveCellsAroundCalculated = false;
