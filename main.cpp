@@ -3,6 +3,9 @@
 #include <array>
 #include <bitset>
 
+#define ESCAPE_KEY 27
+#define SPACE_KEY  32
+
 static const unsigned short rowsNum = 6;
 static const unsigned short colsNum = 10;
 
@@ -137,9 +140,17 @@ int main()
 {
     makeFirstGeneration();
     printField();
-    
-    newGenerationProcessing(generations.back());
-    printField();
+
+    short key = getchar();
+    while (key != ESCAPE_KEY)
+    {
+        if (key == SPACE_KEY)
+        {
+            newGenerationProcessing(generations.back());
+            printField();
+        }
+        key = getchar();
+    }
 
     return 0;
 }
