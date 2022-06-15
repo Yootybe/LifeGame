@@ -82,28 +82,28 @@ void newGenerationProcessing(std::array<std::bitset<colsNum>, rowsNum>& prevGen)
                 isNumOfLiveCellsAroundCalculated = true;
             }
 
-            if (i == 0)
+            if (i == 0 && !isNumOfLiveCellsAroundCalculated)
             {
                 numOfLiveCellsAround += prevGen[i][j - 1] + prevGen[i + 1][j - 1]
                     + prevGen[i + 1][j] + prevGen[i + 1][j + 1] + prevGen[i][j + 1];
                 isNumOfLiveCellsAroundCalculated = true;
             }
 
-            if (i == rowsNum - 1)
+            if (i == rowsNum - 1 && !isNumOfLiveCellsAroundCalculated)
             {
                 numOfLiveCellsAround += prevGen[i][j - 1] + prevGen[i - 1][j - 1]
                     + prevGen[i - 1][j] + prevGen[i - 1][j + 1] + prevGen[i][j + 1];
                 isNumOfLiveCellsAroundCalculated = true;
             }
 
-            if (j == 0)
+            if (j == 0 && !isNumOfLiveCellsAroundCalculated)
             {
                 numOfLiveCellsAround += prevGen[i - 1][j] + prevGen[i - 1][j + 1]
                     + prevGen[i][j + 1] + prevGen[i + 1][j + 1] + prevGen[i + 1][j];
                 isNumOfLiveCellsAroundCalculated = true;
             }
 
-            if (j == colsNum - 1)
+            if (j == colsNum - 1 && !isNumOfLiveCellsAroundCalculated)
             {
                 numOfLiveCellsAround += prevGen[i - 1][j] + prevGen[i - 1][j - 1]
                     + prevGen[i][j - 1] + prevGen[i + 1][j - 1] + prevGen[i + 1][j];
