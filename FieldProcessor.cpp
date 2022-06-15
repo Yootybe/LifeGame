@@ -22,9 +22,9 @@ void FieldProcessor::makeFirstGeneration()
 {
     std::array<std::bitset<colsNum>, rowsNum> cellsStatuses;
 
-    for(unsigned short i = 0; i < rowsNum; i++)
+    for (unsigned short i = 0; i < rowsNum; i++)
     {
-        for(unsigned short j = 0; j < colsNum; j++)
+        for (unsigned short j = 0; j < colsNum; j++)
         {   
             cellsStatuses[i][j] = false;
 
@@ -58,9 +58,9 @@ void FieldProcessor::newGenerationProcessing()
     unsigned short numOfLiveCellsAround = 0;
     bool isNumOfLiveCellsAroundCalculated = false;
 
-    for(unsigned short i = 0; i < rowsNum; i++)
+    for (unsigned short i = 0; i < rowsNum; i++)
     {
-        for(unsigned short j = 0; j < colsNum; j++)
+        for (unsigned short j = 0; j < colsNum; j++)
         {
             // TODO: Bad algorithm, maybe need to use switch another idea
             if (i == 0 && j == 0)
@@ -151,7 +151,7 @@ void FieldProcessor::isAllCellsDie() // TODO: Need to test with different rand()
     {
         for (unsigned short j = 0; j < colsNum; j++)
         {
-            if(rowElem[j])
+            if (rowElem[j])
                 return;
         }
     }
@@ -162,9 +162,9 @@ void FieldProcessor::isAllCellsDie() // TODO: Need to test with different rand()
 
 bool FieldProcessor::compareTwoFields(std::array<std::bitset<colsNum>, rowsNum>& firstField, std::array<std::bitset<colsNum>, rowsNum>& secondField)
 {
-    for(unsigned short i = 0; i < rowsNum; i++)
+    for (unsigned short i = 0; i < rowsNum; i++)
     {
-        for(unsigned short j = 0; j < colsNum; j++)
+        for (unsigned short j = 0; j < colsNum; j++)
         {
             if (firstField[i][j] != secondField[i][j])
                 return false;
