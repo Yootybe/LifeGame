@@ -105,7 +105,6 @@ void newGenerationProcessing(std::array<std::bitset<colsNum>, rowsNum>& prevGen)
                 numOfLiveCellsAround += prevGen[i - 1][j] + prevGen[i - 1][j - 1]
                     + prevGen[i][j - 1] + prevGen[i + 1][j - 1] + prevGen[i + 1][j];
                 isNumOfLiveCellsAroundCalculated = true;
-                // std::cout << numOfLiveCellsAround;
             }
 
             if (!isNumOfLiveCellsAroundCalculated)
