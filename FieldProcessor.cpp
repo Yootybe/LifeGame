@@ -35,6 +35,7 @@ void FieldProcessor::makeFirstGeneration()
     generations.push_back(std::move(cellsStatuses));
 
     printField();
+    isAllCellsDie();
 }
 
 void FieldProcessor::printField()
@@ -140,4 +141,20 @@ void FieldProcessor::newGenerationProcessing()
     generations.push_back(std::move(currentCellsStatuses));
 
     printField();
+    isAllCellsDie();
+}
+
+void FieldProcessor::isAllCellsDie() // TODO: Need to test with different rand()
+{
+    for (auto const& rowElem : generations.back())
+    {
+        for (unsigned short j = 0; j < colsNum; j++)
+        {
+            if(rowElem[j])
+                return;
+        }
+    }
+
+    std::cout << "All cells die. Game over" << std::endl;
+    exit(-1);
 }

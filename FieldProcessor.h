@@ -21,6 +21,7 @@ private:
 
     void makeFirstGeneration();
     void printField();
+    void isAllCellsDie();
 };
 
 #endif // H_FIELD_PROCESSOR
