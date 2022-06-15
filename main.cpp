@@ -44,7 +44,6 @@ void printField()
         }
         std::cout << std::endl;
     }
-    std::cout << std::endl;
 }
 
 void newGenerationProcessing(std::array<std::bitset<colsNum>, rowsNum>& prevGen)
