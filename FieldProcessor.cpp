@@ -28,7 +28,7 @@ void FieldProcessor::makeFirstGeneration()
         {   
             cellsStatuses[i][j] = false;
 
-            if ((rand() % 10 + 1) > 9) // Random
+            if ((rand() % 10 + 1) > 3) // Random
                 cellsStatuses[i][j] = true;
         }
     }
@@ -142,6 +142,7 @@ void FieldProcessor::newGenerationProcessing()
 
     printField();
     isAllCellsDie();
+    checkSameFieldBefore();
 }
 
 void FieldProcessor::isAllCellsDie() // TODO: Need to test with different rand()
@@ -157,4 +158,36 @@ void FieldProcessor::isAllCellsDie() // TODO: Need to test with different rand()
 
     std::cout << "All cells die. Game over" << std::endl;
     exit(-1);
+}
+
+bool FieldProcessor::compareTwoFields(std::array<std::bitset<colsNum>, rowsNum>& firstField, std::array<std::bitset<colsNum>, rowsNum>& secondField)
+{
+    for(unsigned short i = 0; i < rowsNum; i++)
+    {
+        for(unsigned short j = 0; j < colsNum; j++)
+        {
+            if (firstField[i][j] != secondField[i][j])
+                return false;
+        }
+    }
+    return true;
+}
+
+void FieldProcessor::checkSameFieldBefore()
+{
+    for (unsigned short i = 0; i < generations.size() - 1; i++)
+    {
+        if (compareTwoFields(generations.back(), generations[i]))
+        {
+            if (generations.size() - (i + 1) > 1)
+            {
+                std::cout << "Periodic configuration of cells. Game over" << std::endl;
+            }
+            else
+            {
+                std::cout << "Same cell. Game over" << std::endl;
+            }
+            exit(-1);
+        }
+    }
 }

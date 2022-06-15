@@ -22,6 +22,8 @@ private:
     void makeFirstGeneration();
     void printField();
     void isAllCellsDie();
+    bool compareTwoFields(std::array<std::bitset<colsNum>, rowsNum>& firstField, std::array<std::bitset<colsNum>, rowsNum>& secondField);
+    void checkSameFieldBefore();
 };
 
 #endif // H_FIELD_PROCESSOR
