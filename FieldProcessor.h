@@ -7,6 +7,7 @@
 
 class FieldProcessor
 {
+friend class FieldProcessorTest;
 public:
     FieldProcessor();
     ~FieldProcessor();
