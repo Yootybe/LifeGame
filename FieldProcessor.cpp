@@ -131,11 +131,8 @@ void FieldProcessor::isAllCellsDie() // TODO: Need to test with different rand()
 {
     for (auto const& rowElem : generations.back())
     {
-        for (unsigned short j = 0; j < colsNum; j++)
-        {
-            if (rowElem[j])
-                return;
-        }
+        if (rowElem.any())
+            return;
     }
 
     std::cout << "All cells die. Game over" << std::endl;
