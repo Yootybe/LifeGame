@@ -19,6 +19,7 @@ private:
 
     std::vector<std::array<std::bitset<colsNum>, rowsNum>> generations;
 
+    bool setCellStatus(unsigned short numOfLiveCellsAround, bool prevStatus);
     void makeFirstGeneration();
     void printField();
     void isAllCellsDie();
