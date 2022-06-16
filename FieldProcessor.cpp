@@ -4,8 +4,8 @@
 
 enum nearLiveCells : unsigned short
 {
-    twoLiveCells = 2,
-    threeLiveCells = 3
+    aliveCellsThreshold = 2,
+    deadCellsThreshold = 3
 };
 
 FieldProcessor::FieldProcessor()
@@ -54,12 +54,12 @@ bool FieldProcessor::setCellStatus(unsigned short numOfLiveCellsAround, bool pre
 {
     if (prevStatus) 
     {
-        if (numOfLiveCellsAround == nearLiveCells::twoLiveCells || numOfLiveCellsAround == nearLiveCells::threeLiveCells)
+        if (numOfLiveCellsAround == nearLiveCells::aliveCellsThreshold || numOfLiveCellsAround == nearLiveCells::deadCellsThreshold)
             return true;
     }
     else
     {
-        if (numOfLiveCellsAround == nearLiveCells::threeLiveCells)
+        if (numOfLiveCellsAround == nearLiveCells::deadCellsThreshold)
             return true;
     }
     return false;
