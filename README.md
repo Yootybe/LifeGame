@@ -13,9 +13,8 @@ If you want use tests
 2) Eenter: "conan install .." <br>
 3) Enter: "cmake .." <br>
 4) Enter: "make" <br>
-<br>
 
 If don't you want use tests
 ---------------------------
-Comment lines 9, 11, 12, 19
+Comment lines 9, 11, 12, 19 in main CMakeLists.txt
 
