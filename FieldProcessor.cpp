@@ -137,18 +137,18 @@ bool FieldProcessor::compareTwoFields(std::vector<bool>& firstField, std::vector
 
 void FieldProcessor::checkSameFieldBefore()
 {
-    for (unsigned short i = 0; i < generations.size() - 1; i++)
+    auto rIt = generations.rbegin();
+    if (compareTwoFields(*rIt, *(rIt++)))
     {
-        if (compareTwoFields(generations.back(), generations[i]))
+        std::cout << "Same cell. Game over" << std::endl;
+        exit(-1);
+    }
+
+    for (; rIt != generations.rend(); rIt++)
+    {
+        if (compareTwoFields(generations.back(), *rIt))
         {
-            if (generations.size() - (i + 1) > 1)
-            {
-                std::cout << "Periodic configuration of cells. Game over" << std::endl;
-            }
-            else
-            {
-                std::cout << "Same cell. Game over" << std::endl;
-            }
+            std::cout << "Periodic configuration of cells. Game over" << std::endl;
             exit(-1);
         }
     }
