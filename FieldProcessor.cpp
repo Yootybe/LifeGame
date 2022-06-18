@@ -45,6 +45,7 @@ void FieldProcessor::makeFirstGeneration()
     if (!deadCells)
     {
         std::cout << "All cells die. Game over" << std::endl;
+        checkGameStatus();
         exit(-1);
     }
 
@@ -70,7 +71,7 @@ void FieldProcessor::printField()
 
 bool FieldProcessor::setCellStatus(unsigned short numOfLiveCellsAround, bool prevStatus)
 {
-    if (prevStatus) 
+    if (prevStatus)
     {
         if (numOfLiveCellsAround == nearLiveCells::aliveCellsThreshold || numOfLiveCellsAround == nearLiveCells::deadCellsThreshold)
             return true;
@@ -78,8 +79,15 @@ bool FieldProcessor::setCellStatus(unsigned short numOfLiveCellsAround, bool pre
     else
     {
         if (numOfLiveCellsAround == nearLiveCells::deadCellsThreshold)
+        {
+            bornCells++;
             return true;
+        }
     }
+
+    if (prevStatus)
+        deadCells++;
+
     return false;
 }
 
@@ -115,6 +123,7 @@ void FieldProcessor::newGenerationProcessing()
     if (!deadCells)
     {
         std::cout << "All cells die. Game over" << std::endl;
+        checkGameStatus();
         exit(-1);
     }
 
@@ -141,6 +150,7 @@ void FieldProcessor::checkSameFieldBefore()
     if (compareTwoFields(*rIt, *(rIt++)))
     {
         std::cout << "Same cell. Game over" << std::endl;
+        checkGameStatus();
         exit(-1);
     }
 
@@ -149,7 +159,16 @@ void FieldProcessor::checkSameFieldBefore()
         if (compareTwoFields(generations.back(), *rIt))
         {
             std::cout << "Periodic configuration of cells. Game over" << std::endl;
+            checkGameStatus();
             exit(-1);
         }
     }
+}
+
+void FieldProcessor::checkGameStatus()
+{
+    std::string status = "\nFor the entire game\nWas created " + std::to_string(generations.size()) + " generations\n";
+    status += "Was born " + std::to_string(bornCells) + " cells\n";
+    status += "Was died " + std::to_string(deadCells) + " cells\n";
+    std::cout << status;
 }

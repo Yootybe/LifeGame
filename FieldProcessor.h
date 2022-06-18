@@ -12,6 +12,7 @@ public:
     ~FieldProcessor();
 
     void newGenerationProcessing();
+    void checkGameStatus();
 
 private:
     static const unsigned short rowsNum = 6;
@@ -22,6 +23,9 @@ private:
     // Because real vector starts with zeroes and ends with zeroes by calculation algorithm
     static const unsigned short startPos = colsNum + 2 + 1;
     static const unsigned short endPos = ((colsNum + 2) * (rowsNum + 2)) - colsNum - 2;
+
+    unsigned long deadCells = 0;
+    unsigned long bornCells = 0;
 
     bool setCellStatus(unsigned short numOfLiveCellsAround, bool prevStatus);
     void makeFirstGeneration();
