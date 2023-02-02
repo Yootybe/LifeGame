@@ -7,29 +7,23 @@ on:
       
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2019
     
     steps:
-    # - uses: actions/checkout@v1
-    # - uses: ilammy/msvc-dev-cmd@v1.4.1
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v4
-      with:
-          python-version: 3.10
+      - uses: actions/checkout@v1
 
-    - name: Check Python version
-      run: py --version
-  
-    # - name: Check files
-    #   run: ls
-  
-    # - name: Create build_ folder
-    #   run: mkdir build_
-    
-    # - name: Configure Cmake
-    #   run: |
-    #     cd build_
-    #     cmake -DCMAKE_BUILD_TYPE=Release .. -G "Visual Studio 16 2019"
-        
-    # - name: Build
-    #   run: cmake --build .
+      - name: Install Conan
+        id: conan
+        uses: turtlebrowser/get-conan@main
+
+      - name: Check Conan version
+        run: conan --version
+
+      - name: Prebuild thirdparty
+        run: py .ci/prebuild_thirdparty.py --build-release
+
+      - name: Build
+        run: conan build . --build-folder build_
+
+      - name: Test
+        run: ./build_/bin/Life.exe

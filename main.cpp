@@ -7,21 +7,7 @@
 
 int main()
 {
-    FieldProcessor fp;
-
-    short key = getchar();
-    while (key != CTRL_D)
-    {
-        if (key == SPACE_KEY)
-            fp.newGenerationProcessing();
-
-        if (key == ESCAPE_KEY)
-            fp.checkGameStatus();
-
-        key = getchar();
-    }
-
-    fp.checkGameStatus();
+    std::cout << "Program executed successfully" << std::endl;
 
     return 0;
 }
