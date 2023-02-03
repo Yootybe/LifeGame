@@ -18,14 +18,15 @@ jobs:
         uses: mathieudutour/github-tag-action@v6.1
         with: 
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          release_type: patch
         
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ steps.tag_version.outputs.new_version }}
+          tag: ${{ steps.tag_version.outputs.new_tag }
           name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
-          release_type: patch
+          append_to_pre_release_tag: ""
 
 #       - name: Install Conan
 #         id: conan
