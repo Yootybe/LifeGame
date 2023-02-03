@@ -25,7 +25,10 @@ jobs:
     
     steps:
       - name: Open pull request
-        run: echo "Opened pull request"
+        run: | 
+          echo "Opened pull request"
+          echo "Opened pull request 2"
+
 #     - name: Bump version and push tag
 #       id: tag_version
 #       uses: mathieudutour/github-tag-action@v6.1
