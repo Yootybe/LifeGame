@@ -8,7 +8,7 @@ name: GitHub-Actions
 on:
   pull_request:
       branches: [master]
-#       types: [closed]
+      types: [closed]
       
 jobs:
   build:
