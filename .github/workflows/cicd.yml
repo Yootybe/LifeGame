@@ -8,7 +8,7 @@ name: GitHub-Actions
 on:
   pull_request:
       branches: [master]
-      types: [closed]
+#       types: [closed]
       
 jobs:
   build:
@@ -18,16 +18,16 @@ jobs:
       - name: Run code
         run: echo "Do some work"
         
-  release:
-    needs: build
-    runs-on: windows-2019
-    if: github.event.pull_request.merged == true
+#   release:
+#     needs: build
+#     runs-on: windows-2019
+#     if: github.event.pull_request.merged == true
     
-    steps:
-      - name: Open pull request
-        run: | 
-          echo "Opened pull request"
-          echo "Opened pull request 2"
+#     steps:
+#       - name: Open pull request
+#         run: | 
+#           echo "Opened pull request"
+#           echo "Opened pull request 2"
 
 #     - name: Bump version and push tag
 #       id: tag_version
