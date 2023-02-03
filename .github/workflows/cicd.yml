@@ -9,26 +9,39 @@ jobs:
   build:
     runs-on: windows-2019
     
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
     steps:
 #       - name: Clone repo
 #         uses: actions/checkout@v1
+
         
-      - name: Bump version and push tag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@v6.1
-        with: 
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-#           release_type: patch
+        - uses: rymndhng/release-on-push-action@master
+          with:
+            bump_version_scheme: minor
+            
+        - name: Check Output Parameters
+          run: |
+            echo "Got tag name ${{ steps.release.outputs.tag_name }}"
+            echo "Got release version ${{ steps.release.outputs.version }}"
         
-      - name: Create a GitHub release
-        uses: ncipollo/release-action@v1
-        with:
-          tag: v10.1.2
-#           tag: ${{ steps.tag_version.outputs.new_tag }}
-          name: Release v10.1.2
-#           name: Release ${{ steps.tag_version.outputs.new_tag }}
-          body: ${{ steps.tag_version.outputs.changelog }}
-#           append_to_pre_release_tag: 'allowUpdates'
+#       - name: Bump version and push tag
+#         id: tag_version
+#         uses: mathieudutour/github-tag-action@v6.1
+#         with: 
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+# #           release_type: patch
+        
+#       - name: Create a GitHub release
+#         uses: ncipollo/release-action@v1
+#         with:
+#           tag: v10.1.2
+# #           tag: ${{ steps.tag_version.outputs.new_tag }}
+#           name: Release v10.1.2
+# #           name: Release ${{ steps.tag_version.outputs.new_tag }}
+#           body: ${{ steps.tag_version.outputs.changelog }}
+# #           append_to_pre_release_tag: 'allowUpdates'
 
 #       - name: Install Conan
 #         id: conan
