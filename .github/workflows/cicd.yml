@@ -10,20 +10,28 @@ jobs:
     runs-on: windows-2019
     
     steps:
-      - uses: actions/checkout@v1
+      - name: Clone repo
+        uses: actions/checkout@v1
+        
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
 
-      - name: Install Conan
-        id: conan
-        uses: turtlebrowser/get-conan@main
+#       - name: Install Conan
+#         id: conan
+#         uses: turtlebrowser/get-conan@main
 
-      - name: Check Conan version
-        run: conan --version
+#       - name: Check Conan version
+#         run: conan --version
 
-      - name: Prebuild thirdparty
-        run: py .ci/prebuild_thirdparty.py --build-release
+#       - name: Prebuild thirdparty
+#         run: py .ci/prebuild_thirdparty.py --build-release
 
-      - name: Build
-        run: conan build . --build-folder build_
+#       - name: Build
+#         run: conan build . --build-folder build_
 
-      - name: Test
-        run: ./build_/bin/Life.exe
+#       - name: Test
+#         run: ./build_/bin/Life.exe
