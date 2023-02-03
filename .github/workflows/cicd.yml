@@ -13,6 +13,10 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@v1
         
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.1
+        
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
