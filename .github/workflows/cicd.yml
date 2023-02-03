@@ -23,9 +23,10 @@ jobs:
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
-          tag: "v10.1.1"
+          tag: v10.1.1
 #           tag: ${{ steps.tag_version.outputs.new_tag }}
-          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          name: Release v10.1.1
+#           name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
 #           append_to_pre_release_tag: 'allowUpdates'
 
