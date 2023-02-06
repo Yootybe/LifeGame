@@ -10,7 +10,11 @@ if (EXISTS ${CMAKE_CURRENT_BINARY_DIR}/conanbuildinfo.cmake)
     conan_basic_setup(TARGETS)
 endif()
 
-add_library(${PROJECT_NAME} STATIC FieldProcessor.h FieldProcessor.cpp)
+if(ANDROID)
+    add_library(lib${PROJECT_NAME} STATIC FieldProcessor.h FieldProcessor.cpp)
+elseif()
+    add_library(${PROJECT_NAME} STATIC FieldProcessor.h FieldProcessor.cpp)
+endif()
 
 # add_executable(${PROJECT_NAME} main.cpp FieldProcessor.h FieldProcessor.cpp)
 
