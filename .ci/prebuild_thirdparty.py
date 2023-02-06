@@ -19,7 +19,8 @@ for i in range(1, len(sys.argv)):
 
 if (platform == "linux" or platform == "linux2"):
     if enable_android_build:
-        archs = ["arm64-v8a", "armeabi-v7a", "x86_64", "x86"]
+        # archs = ["arm64-v8a", "armeabi-v7a", "x86_64", "x86"]
+        archs = ["arm64-v8a"]
 
         profile_build = os.getcwd() + "/.ci/conan_profiles/conan_profile_linux_release"
 
