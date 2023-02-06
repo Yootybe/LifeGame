@@ -33,7 +33,7 @@ if (platform == "linux" or platform == "linux2"):
                 profile_host = os.getcwd() + "/.ci/conan_profiles/Android/Debug/host_android_" + arch + "_debug"
 
             # libx264DeployCommand = "conan create .ci/libx264_conan_recipe libx264/cci.20220602@LifeGame/stable -pr:h " + profile_host + " -pr:b=" + profile_build + " --build=missing"
-            testDeployCommand = "conan create . libvideo/1.0.0@ccor/libvideo -tf None -pr:h " + profile_host + " -pr:b=" + profile_build + " --build=missing"
+            testDeployCommand = "conan create . liblife/1.0.0@test/liblife -tf None -pr:h " + profile_host + " -pr:b=" + profile_build + " --build=missing"
 
             # os.system(libx264DeployCommand)
             os.system(testDeployCommand)
