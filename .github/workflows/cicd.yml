@@ -5,25 +5,25 @@ on:
       branches: [master]
       
 jobs:
-  build-windows:
-    runs-on: windows-2019
+  # build-windows:
+  #   runs-on: windows-2019
     
-    steps:
-      - name: Checkout project
-        uses: actions/checkout@v1
+  #   steps:
+  #     - name: Checkout project
+  #       uses: actions/checkout@v1
 
-      - name: Install Conan
-        id: conan
-        uses: turtlebrowser/get-conan@main
+  #     - name: Install Conan
+  #       id: conan
+  #       uses: turtlebrowser/get-conan@main
 
-      - name: Prebuild thirdparty
-        run: py .ci/prebuild_thirdparty.py --build-release
+  #     - name: Prebuild thirdparty
+  #       run: py .ci/prebuild_thirdparty.py --build-release
 
-      - name: Build
-        run: conan build . --build-folder build_
+  #     - name: Build
+  #       run: conan build . --build-folder build_
 
-      - name: Test
-        run: ./build_/bin/Life.exe
+  #     - name: Test
+  #       run: ./build_/bin/Life.exe
 
   
   build-android:
@@ -37,11 +37,5 @@ jobs:
         id: conan
         uses: turtlebrowser/get-conan@main
         
-      - name: Conan version
-        run: conan --version
-        
-      - name: CMake version
-        run: cmake --version
-
       - name: Build Android version for arm64-v8a, armeabi-v7a, x86_64, x86
         run: python3 .ci/prebuild_thirdparty.py --build-release --android
