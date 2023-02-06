@@ -36,6 +36,12 @@ jobs:
       - name: Install Conan
         id: conan
         uses: turtlebrowser/get-conan@main
+        
+      - name: Conan version
+        run: conan --version
+        
+      - name: CMake version
+        run: cmake --version
 
       - name: Build Android version for arm64-v8a, armeabi-v7a, x86_64, x86
         run: python3 .ci/prebuild_thirdparty.py --build-release --android
