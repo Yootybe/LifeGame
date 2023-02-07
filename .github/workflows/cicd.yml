@@ -37,11 +37,8 @@ jobs:
         id: conan
         uses: turtlebrowser/get-conan@main
 
-      - name: Set up GCC
-        uses: egor-tensin/setup-gcc@v1
-        with:
-          version: latest
-          platform: x64
+    - name: conan profile update settings.compiler.libcxx=libstdc++11 default
+      run: conan profile update settings.compiler.libcxx=libstdc++11 default
 
       # - name: Setup Android NDK
       #   uses: nttld/setup-ndk@v1
