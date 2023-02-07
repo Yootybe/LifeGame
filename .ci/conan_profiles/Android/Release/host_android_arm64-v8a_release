@@ -11,3 +11,4 @@ os.api_level=21
 android-ndk/r21e
 [env]
 CONAN_LOGGING_LEVEL=debug
+ANDROID_NDK=""
