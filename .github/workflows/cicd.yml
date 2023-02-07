@@ -27,7 +27,7 @@ jobs:
 
   
   build-android:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     
     steps:
       - name: Checkout project
@@ -36,6 +36,12 @@ jobs:
       - name: Install Conan
         id: conan
         uses: turtlebrowser/get-conan@main
+
+      - name: Set up GCC
+        uses: egor-tensin/setup-gcc@v1
+        with:
+          version: latest
+          platform: x64
 
       # - name: Setup Android NDK
       #   uses: nttld/setup-ndk@v1
