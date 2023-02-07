@@ -37,11 +37,20 @@ jobs:
         id: conan
         uses: turtlebrowser/get-conan@main
 
-      - name: Set up GCC
-        uses: egor-tensin/setup-gcc@v1
-        with:
-          version: 11
-          platform: x64
+      - name: Conan set log
+        run: |
+          touch /tmp/conan_trace.log
+          touch /tmp/conan_run.log
+          touch /tmp/conan_run_cmds.log
+          export CONAN_TRACE_FILE=/tmp/conan_trace.log
+          export CONAN_LOG_RUN_TO_FILE=/tmp/conan_run.log
+          export CONAN_PRINT_RUN_COMMANDS=/tmp/conan_run_cmds.log
+
+      # - name: Set up GCC
+      #   uses: egor-tensin/setup-gcc@v1
+      #   with:
+      #     version: 11
+      #     platform: x64
 
       # - name: Setup Android NDK
       #   uses: nttld/setup-ndk@v1
@@ -58,3 +67,9 @@ jobs:
         
       - name: Build Android version for arm64-v8a, armeabi-v7a, x86_64, x86
         run: python3 .ci/prebuild_thirdparty.py --build-release --android
+
+      - name: Conan show logs
+        run: |
+          cat /tmp/conan_trace.log
+          cat /tmp/conan_run.log
+          cat /tmp/conan_run_cmds.log
