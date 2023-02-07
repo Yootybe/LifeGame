@@ -37,8 +37,8 @@ jobs:
         id: conan
         uses: turtlebrowser/get-conan@main
 
-    - name: conan profile update settings.compiler.libcxx=libstdc++11 default
-      run: conan profile update settings.compiler.libcxx=libstdc++11 default
+      - name: conan profile update settings.compiler.libcxx=libstdc++11 default
+        run: conan profile update settings.compiler.libcxx=libstdc++11 default
 
       # - name: Setup Android NDK
       #   uses: nttld/setup-ndk@v1
