@@ -14,3 +14,4 @@ build_type=Release
 [conf]
 [build_requires]
 [env]
+CONAN_LOGGING_LEVEL=debug
